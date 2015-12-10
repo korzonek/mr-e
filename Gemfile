@@ -36,7 +36,7 @@ gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 
-gem 'simplecov', require: false, group: :test
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

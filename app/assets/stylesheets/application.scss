@@ -16,3 +16,15 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  margin-top: 60px;
+}
+
+a, button, input {
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar {
+  padding-right: 15px;
+}

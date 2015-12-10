@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'autoprefixer-rails'
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
 

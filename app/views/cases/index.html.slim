@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-xs-12
+      h1 Available cases
+      - @cases.each do |casee|
+        .light-well
+          h3
+            = casee.name
+            - if casee.is_solved
+              small.pull-right solved
+          hr
+          p = casee.description

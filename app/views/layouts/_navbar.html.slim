@@ -10,8 +10,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top
     .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li = link_to current_user.username, root_path
-          li = link_to 'Logout', destroy_user_session_path, method: :delete
+          li.dropdown
+            a.dropdown-toggle[href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]
+              = current_user.username
+              span.caret
+            ul.dropdown-menu
+              li.divider[role="separator"]
+              li = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           li = link_to 'Login', new_user_session_path
           li = button_to 'Sign up', new_user_registration_path, method: :get, class: 'btn btn-success navbar-btn'

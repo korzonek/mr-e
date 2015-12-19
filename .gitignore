@@ -27,3 +27,5 @@ bower.json
 .powenv
 
 .idea
+
+/config/application.yml

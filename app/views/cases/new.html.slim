@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      .light-well
+        h1 Create a case
+        hr
+        = form_for @case do |f|
+          - if @case.errors.any?
+            #error_explanation
+              h2
+                = pluralize(@case.errors.count, 'error')
+                | &nbsp;prohibited this case from being saved:
+              ul
+                - @case.errors.full_messages.each do |msg|
+                  li = msg
+          .form-group
+            = f.text_field :name, placeholder: 'Case name', class: 'form-control'
+          .form-group
+            = f.text_area :description, placeholder: 'Case description', class: 'form-control'
+          .form-group
+            = f.submit 'Create a case', class: 'btn btn-block btn-primary'

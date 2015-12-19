@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-xs-12.light-well
+      h1
+        = @case.name
+        - if @case.is_solved
+          small.pull-right.label.label-warning Solved
+      hr
+      p = @case.description
+      hr
+      p
+        | Admin:&nbsp;
+        = @case.admin.username

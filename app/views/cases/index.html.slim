@@ -10,3 +10,6 @@
               small.pull-right.label.label-warning Solved
           hr
           p = casee.description
+          - if user_signed_in?
+            hr
+            = link_to 'Show', casee, class: 'btn btn-lg btn-block btn-primary'

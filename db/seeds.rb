@@ -11,7 +11,7 @@ user = User.create!(username: 'test', email: 'test@example.com', password: '1234
                              tristique non magna. Phasellus nec bibendum lorem. Proin rhoncus egestas pellentesque.
                              Vivamus ultricies eu arcu molestie tristique. Suspendisse potenti. In blandit odio ornare,
                              semper magna nec, lobortis enim.',
-               is_published: true,
+               is_published: (index % 5 < 4),
+               is_solved: (index % 5 < 1),
                user: user)
 end
-Case.last.update(is_solved: true)

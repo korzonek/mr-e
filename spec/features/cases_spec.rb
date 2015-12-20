@@ -57,4 +57,29 @@ describe 'cases_controller' do
       expect(page).to have_content 'Desc xyz'
     end
   end
+
+  context '#join' do
+    let(:user_2) { User.create(username: 'john2', email: 'john2@j.j', password: '12345678') }
+    let(:casee) { Case.create(name: 'test case 1', description: 'description testing', is_published: true, admin: user_2) }
+
+    it 'displays success message after creating' do
+      visit "/cases/#{casee.id}"
+      click_link 'Join!'
+      expect(Participant.where(user: user, case: casee).any?).to be true
+      expect(page).to have_content "You've successfully joined the case :)"
+    end
+  end
+
+  context '#leave' do
+    let(:user_2) { User.create(username: 'john2', email: 'john2@j.j', password: '12345678') }
+    let(:casee) { Case.create(name: 'test case 1', description: 'description testing', is_published: true, admin: user_2) }
+
+    it 'displays success message after creating' do
+      visit "/cases/#{casee.id}"
+      click_link 'Join!'
+      click_link 'Leave!'
+      expect(Participant.where(user: user, case: casee).any?).to be false
+      expect(page).to have_content "You're no longer solving this case."
+    end
+  end
 end

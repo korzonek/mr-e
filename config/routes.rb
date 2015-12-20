@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :cases
 
-  get 'static_pages/index'
+  post '/cases/:id/join', to: 'cases#join', as: 'join_case'
 
   root 'static_pages#index'
 end

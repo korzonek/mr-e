@@ -12,7 +12,11 @@
         | Admin:&nbsp;
         = @case.admin.username
       hr
-      p = link_to 'Join!', join_case_path, method: :post
+      p
+        - if current_user.cases.include?(@case)
+          = link_to 'Leave!', leave_case_path, method: :delete, class: 'btn btn-block btn-danger'
+        - else
+          = link_to 'Join!', join_case_path, method: :post, class: 'btn btn-block btn-success'
       hr
       h5 Solvers:
       ul

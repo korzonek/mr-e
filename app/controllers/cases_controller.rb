@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :get_case, only: [:show, :join]
+  before_action :get_case, only: [:show, :join, :leave]
   before_action :joined_already, only: :join
 
   def index
@@ -31,7 +31,8 @@ class CasesController < ApplicationController
   end
 
   def leave
-
+    Participant.where(case: @case, user: current_user).destroy_all
+    redirect_to @case, notice: "You're no longer solving this case."
   end
 
   private

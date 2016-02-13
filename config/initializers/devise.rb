@@ -262,4 +262,6 @@ Devise.setup do |config|
 
   # Use login to authenticate
   config.authentication_keys = [ :login ]
+
+  config.secret_key = 'b29cce7c003369a80203ab24c136f1a04e13fbe24d2b9275045b480dfaa267da8b01a28d893a8b78b44019346ed47375aa47dff47292736764efabc4cfe3bfaa'
 end

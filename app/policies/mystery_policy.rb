@@ -34,4 +34,12 @@ class MysteryPolicy < ApplicationPolicy
     !join?
   end
 
+  def unpublish?
+    user == mystery.admin && mystery.is_published
+  end
+
+  def publish?
+    !unpublish?
+  end
+
 end

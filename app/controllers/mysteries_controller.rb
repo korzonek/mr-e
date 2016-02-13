@@ -1,6 +1,6 @@
 class MysteriesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :get_mystery, only: [:show, :join, :leave]
+  before_action :get_mystery, only: [:show, :join, :leave, :publish, :unpublish]
 
   def index
     @mysteries = Mystery.published
@@ -34,6 +34,22 @@ class MysteriesController < ApplicationController
   def leave
     @mystery.participants.where(user: current_user).destroy_all
     redirect_to @mystery, notice: "You're no longer solving this mystery."
+  end
+
+  def publish
+    if @mystery.update(is_published: true)
+      redirect_to @mystery, notice: "#{@mystery.name} is now published. It means that everybody can join and solve it! :)"
+    else
+      render @mystery, notice: "There was a problem with publishing #{@mystery.name} :( Please try again later..."
+    end
+  end
+
+  def unpublish
+    if @mystery.update(is_published: false)
+      redirect_to @mystery, notice: "#{@mystery.name} is now unpublished. It means that only you can see it :)"
+    else
+      render @mystery, notice: "There was a problem with publishing #{@mystery.name} :( Please try again later..."
+    end
   end
 
   private

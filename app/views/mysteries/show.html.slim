@@ -3,8 +3,18 @@
     .col-xs-12.light-well
       h1
         = @mystery.name
+        | &nbsp;
+        - if policy(@mystery).publish?
+          = link_to 'Publish', publish_mystery_path, method: :update, class: 'btn btn-success'
+        - if policy(@mystery).unpublish?
+          = link_to 'Unpublish', unpublish_mystery_path, method: :update, class: 'btn btn-danger'
         - if @mystery.is_solved
           small.pull-right.label.label-warning Solved
+        - if current_user == @mystery.admin
+          - if @mystery.is_published
+            small.pull-right.label.label-success Published
+          - else
+            small.pull-right.label.label-danger Unpublished
       hr
       p = @mystery.description
       hr

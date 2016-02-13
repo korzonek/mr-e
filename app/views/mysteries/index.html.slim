@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-xs-12
+      h1 Available mysteries
+      - @mysteries.each do |mystery|
+        .light-well
+          h3
+            = mystery.name
+            - if mystery.is_solved
+              small.pull-right.label.label-warning Solved
+          hr
+          p = mystery.description
+          - if policy(:mystery).show?
+            hr
+            = link_to 'Show', mystery, class: 'btn btn-lg btn-block btn-primary'

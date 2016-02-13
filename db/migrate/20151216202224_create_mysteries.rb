@@ -1,6 +1,6 @@
-class CreateCases < ActiveRecord::Migration
+class CreateMysteries < ActiveRecord::Migration
   def change
-    create_table :cases do |t|
+    create_table :mysteries do |t|
       t.string :name
       t.text :description
       t.boolean :is_published, default: false

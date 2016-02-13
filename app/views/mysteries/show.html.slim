@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-xs-12.light-well
+      h1
+        = @mystery.name
+        - if @mystery.is_solved
+          small.pull-right.label.label-warning Solved
+      hr
+      p = @mystery.description
+      hr
+      p
+        | Admin:&nbsp;
+        = @mystery.admin.username
+      hr
+      p
+        - if policy(@mystery).join?
+          = link_to 'Join!', join_mystery_path, method: :post, class: 'btn btn-block btn-success'
+        - else
+          = link_to 'Leave!', leave_mystery_path, method: :delete, class: 'btn btn-block btn-danger'
+      hr
+      h5 Solvers:
+      ul
+        - @mystery.users.each do |user|
+          li = user.username

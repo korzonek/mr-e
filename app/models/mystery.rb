@@ -1,4 +1,4 @@
-class Case < ActiveRecord::Base
+class Mystery < ActiveRecord::Base
   belongs_to :admin, class_name: User, foreign_key: 'user_id'
   has_many :participants
   has_many :users, through: :participants

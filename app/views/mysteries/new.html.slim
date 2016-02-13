@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      .light-well
+        h1 Create a mystery
+        hr
+        = form_for @mystery do |f|
+          - if @mystery.errors.any?
+            #error_explanation
+              h2
+                = pluralize(@mystery.errors.count, 'error')
+                | &nbsp;prohibited this mystery from being saved:
+              ul
+                - @mystery.errors.full_messages.each do |msg|
+                  li = msg
+          .form-group
+            = f.text_field :name, placeholder: 'Mystery name', class: 'form-control'
+          .form-group
+            = f.text_area :description, placeholder: 'Mystery description', class: 'form-control'
+          .form-group
+            = f.submit 'Create a mystery', class: 'btn btn-block btn-primary'

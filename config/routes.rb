@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :cases
+  resources :mysteries
 
-  post '/cases/:id/join', to: 'cases#join', as: 'join_case'
-  delete '/cases/:id/leave', to: 'cases#leave', as: 'leave_case'
+  post '/mysteries/:id/join', to: 'mysteries#join', as: 'join_mystery'
+  delete '/mysteries/:id/leave', to: 'mysteries#leave', as: 'leave_mystery'
 
   root 'static_pages#index'
 end

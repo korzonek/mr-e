@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20151219210126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cases", force: :cascade do |t|
+  create_table "mysteries", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.boolean  "is_published", default: false
@@ -26,16 +26,16 @@ ActiveRecord::Schema.define(version: 20151219210126) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "cases", ["user_id"], name: "index_cases_on_user_id", using: :btree
+  add_index "mysteries", ["user_id"], name: "index_mysteries_on_user_id", using: :btree
 
   create_table "participants", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "case_id"
+    t.integer  "mystery_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "participants", ["case_id"], name: "index_participants_on_case_id", using: :btree
+  add_index "participants", ["mystery_id"], name: "index_participants_on_mystery_id", using: :btree
   add_index "participants", ["user_id"], name: "index_participants_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20151219210126) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  add_foreign_key "cases", "users"
-  add_foreign_key "participants", "cases"
+  add_foreign_key "mysteries", "users"
+  add_foreign_key "participants", "mysteries"
   add_foreign_key "participants", "users"
 end

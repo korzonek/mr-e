@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :own_cases, class_name: Case, foreign_key: 'user_id'
+  has_many :own_mysteries, class_name: Mystery, foreign_key: 'user_id'
   has_many :participants
-  has_many :cases, through: :participants
+  has_many :mysteries, through: :participants
 
   attr_accessor :login
 

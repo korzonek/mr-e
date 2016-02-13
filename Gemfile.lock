@@ -122,6 +122,8 @@ GEM
     polyamorous (1.3.0)
       activerecord (>= 3.0)
     puma (2.15.3)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -263,6 +265,7 @@ DEPENDENCIES
   jquery-rails
   pg (~> 0.15)
   puma
+  pundit
   rails (= 4.2.5)
   rails_db
   rspec-rails
@@ -276,4 +279,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.0.pre.2
+   1.11.2

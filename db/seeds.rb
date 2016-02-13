@@ -13,5 +13,5 @@ user = User.create!(username: 'test', email: 'test@example.com', password: '1234
                              semper magna nec, lobortis enim.',
                is_published: (index % 5 < 4),
                is_solved: (index % 5 < 1),
-               user: user)
+               admin: user)
 end

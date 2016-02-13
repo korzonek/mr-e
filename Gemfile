@@ -38,6 +38,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'autoprefixer-rails'
 gem 'figaro'
+gem 'pundit'
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
@@ -59,4 +60,5 @@ group :development do
   gem 'spring'
 
   gem 'rails_db'
+  gem 'pry'
 end

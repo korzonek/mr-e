@@ -10,11 +10,10 @@
           = link_to 'Unpublish', unpublish_mystery_path, method: :update, class: 'btn btn-danger'
         - if @mystery.is_solved
           small.pull-right.label.label-warning Solved
-        - if current_user == @mystery.admin
-          - if @mystery.is_published
-            small.pull-right.label.label-success Published
-          - else
-            small.pull-right.label.label-danger Unpublished
+        - if policy(@mystery).unpublish?
+          small.pull-right.label.label-success Published
+        - if policy(@mystery).publish?
+          small.pull-right.label.label-danger Unpublished
       hr
       p = @mystery.description
       hr
@@ -23,11 +22,12 @@
         = @mystery.admin.username
       hr
       p
-        - if policy(@mystery).join?
-          = link_to 'Join!', join_mystery_path, method: :post, class: 'btn btn-block btn-success'
-        - else
-          = link_to 'Leave!', leave_mystery_path, method: :delete, class: 'btn btn-block btn-danger'
-      hr
+      - if policy(@mystery).join?
+        = link_to 'Join!', join_mystery_path, method: :post, class: 'btn btn-block btn-success'
+        hr
+      - if policy(@mystery).leave?
+        = link_to 'Leave!', leave_mystery_path, method: :delete, class: 'btn btn-block btn-danger'
+        hr
       h5 Solvers:
       ul
         - @mystery.users.each do |user|

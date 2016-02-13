@@ -17,6 +17,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top
               = current_user.username
               span.caret
             ul.dropdown-menu
+              li = link_to 'My mysteries', my_mysteries_path
               li = link_to 'Create a mystery', new_mystery_path
               li.divider[role="separator"]
               li = link_to 'Logout', destroy_user_session_path, method: :delete

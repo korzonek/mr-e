@@ -1,0 +1,16 @@
+.container
+  .row
+    - if @mysteries_as_admin.any?
+      .col-xs-12.light-well
+        h1 As admin
+        hr
+        ul
+          - @mysteries_as_admin.each do |mystery|
+            li = link_to mystery.name, mystery
+    - if @mysteries_as_solver.any?
+      .col-xs-12.light-well
+        h1 As solver
+        hr
+        ul
+          - @mysteries_as_solver.each do |mystery|
+            li = link_to mystery.name, mystery

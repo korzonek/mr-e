@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/mysteries/:id/leave', to: 'mysteries#leave', as: 'leave_mystery'
   post '/mysteries/:id/publish', to: 'mysteries#publish', as: 'publish_mystery'
   post '/mysteries/:id/unpublish', to: 'mysteries#unpublish', as: 'unpublish_mystery'
+  get '/my_mysteries', to: 'mysteries#my_mysteries', as: 'my_mysteries'
 
   root 'static_pages#index'
 end

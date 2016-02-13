@@ -27,11 +27,11 @@ class MysteryPolicy < ApplicationPolicy
   end
 
   def join?
-    mystery.users.exclude? user
+    user != mystery.admin && mystery.users.exclude?(user)
   end
 
   def leave?
-    !join?
+    user != mystery.admin && mystery.users.include?(user)
   end
 
   def unpublish?
@@ -39,7 +39,11 @@ class MysteryPolicy < ApplicationPolicy
   end
 
   def publish?
-    !unpublish?
+    user == mystery.admin && !mystery.is_published
+  end
+
+  def my_mysteries?
+    user.present?
   end
 
 end

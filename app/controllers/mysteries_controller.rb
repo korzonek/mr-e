@@ -1,10 +1,15 @@
 class MysteriesController < ApplicationController
-  before_action :authenticate_user!, except: :index
   before_action :get_mystery, only: [:show, :join, :leave, :publish, :unpublish]
 
   def index
     @mysteries = Mystery.published
     authorize @mysteries
+  end
+
+  def my_mysteries
+    @mysteries_as_admin = Mystery.where(admin: current_user)
+    @mysteries_as_solver = current_user.mysteries
+    authorize Mystery
   end
 
   def show

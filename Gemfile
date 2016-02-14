@@ -40,8 +40,6 @@ gem 'autoprefixer-rails'
 gem 'figaro'
 gem 'pundit'
 
-gem 'codeclimate-test-reporter', group: :test, require: nil
-
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do

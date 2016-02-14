@@ -13,6 +13,7 @@ class MysteriesController < ApplicationController
   end
 
   def show
+    @requests = @mystery.requests
   end
 
   def new

@@ -27,11 +27,11 @@ class MysteryPolicy < ApplicationPolicy
   end
 
   def join?
-    user != mystery.admin && mystery.users.exclude?(user)
+    user.present? && user != mystery.admin && mystery.users.exclude?(user)
   end
 
   def leave?
-    user != mystery.admin && mystery.users.include?(user)
+    user.present? && user != mystery.admin && mystery.users.include?(user)
   end
 
   def unpublish?

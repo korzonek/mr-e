@@ -32,3 +32,11 @@
       ul
         - @mystery.users.each do |user|
           li = user.username
+      hr
+      h5
+        | Requests:
+        - if policy(@mystery).leave?
+          small = link_to 'Add request', new_mystery_request_path(@mystery), class: 'btn btn-xs btn-primary'
+      ul
+        - @requests.each do |request|
+          li = request.content

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :own_mysteries, class_name: Mystery, foreign_key: 'user_id'
   has_many :participants
   has_many :mysteries, through: :participants
+  has_many :requests
 
   attr_accessor :login
 

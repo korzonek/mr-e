@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'requests/new'
+
   devise_for :users
 
-  resources :mysteries
+  resources :mysteries do
+    resources :requests, except: [:index, :show]
+  end
 
   post '/mysteries/:id/join', to: 'mysteries#join', as: 'join_mystery'
   delete '/mysteries/:id/leave', to: 'mysteries#leave', as: 'leave_mystery'

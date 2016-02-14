@@ -6,23 +6,33 @@ RSpec.describe MysteryPolicy do
 
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :index?, :my_mysteries? do
+    it "allows access to all users" do
+      expect(subject).to permit(user)
+    end
   end
 
   permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "denies access if mystery is not published" do
+      expect(subject).not_to permit(user, Mystery.new(is_published: false))
+    end
+
+    it "allows access if user is and admin of a mystery" do
+      expect(subject).to permit(user, Mystery.new(is_published: false, admin: user))
+    end
+
+    it "denies access if mystery is not published" do
+      expect(subject).to permit(user, Mystery.new(is_published: true))
+    end
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  permissions :update?, :destroy? do
+    it 'denies access if user is not an admin of a mystery' do
+      expect(subject).not_to permit(user, Mystery.new())
+    end
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'allows access if user is an admin of a mystery' do
+      expect(subject).to permit(user, Mystery.new(admin: user))
+    end
   end
 end

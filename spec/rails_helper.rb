@@ -9,6 +9,8 @@ require 'rspec/rails'
 
 require 'capybara/rspec'
 
+require 'pundit/rspec'
+
 include Warden::Test::Helpers
 Warden.test_mode!
 

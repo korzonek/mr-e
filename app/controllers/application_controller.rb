@@ -15,5 +15,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
 
-  after_action :verify_authorized, unless: :devise_controller? 
+  after_action :verify_authorized, unless: :devise_controller?
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action ;)"
+    redirect_to(request.referrer || mysteries_path)
+  end
 end

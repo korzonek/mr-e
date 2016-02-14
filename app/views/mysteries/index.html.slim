@@ -10,6 +10,6 @@
               small.pull-right.label.label-warning Solved
           hr
           p = mystery.description
-          - if policy(:mystery).show?
+          - if policy(mystery).show?
             hr
             = link_to 'Show', mystery, class: 'btn btn-lg btn-block btn-primary'

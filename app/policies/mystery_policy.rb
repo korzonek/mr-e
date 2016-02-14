@@ -11,7 +11,7 @@ class MysteryPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present?
+    mystery.is_published || user == mystery.admin
   end
 
   def create?

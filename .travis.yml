@@ -1,0 +1,18 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.3.0
+addons:
+  postgresql: '9.5.1'
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml config/database_original.yml
+  - cp config/database.yml.travis config/database.yml
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+after_script:
+  - cp config/database_original.yml config/database.yml

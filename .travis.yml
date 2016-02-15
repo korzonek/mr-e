@@ -3,7 +3,7 @@ cache: bundler
 rvm:
   - 2.3.0
 addons:
-  postgresql: '9.5.1'
+  postgresql: '9.3'
 services:
   - postgresql
 before_script:

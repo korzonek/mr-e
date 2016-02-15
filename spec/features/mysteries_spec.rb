@@ -4,7 +4,7 @@ describe 'mysteries_controller' do
   let(:user) { User.create(username: 'john', email: 'john@j.j', password: '12345678') }
   before(:each) { login_as user }
 
-  context '#show' do
+  describe '#show' do
     let(:mystery) { Mystery.create(name: 'test mystery 1', description: 'description testing', admin: user) }
 
     it 'displays admin username on mystery view' do
@@ -35,7 +35,7 @@ describe 'mysteries_controller' do
     end
   end
 
-  context '#new' do
+  describe '#new' do
     it 'displays error for mystery name' do
       visit '/mysteries/new'
       click_button 'Create a mystery'
@@ -58,7 +58,7 @@ describe 'mysteries_controller' do
     end
   end
 
-  context '#join' do
+  describe '#join' do
     let(:user_2) { User.create(username: 'john2', email: 'john2@j.j', password: '12345678') }
     let(:mystery) { Mystery.create(name: 'test mystery 1', description: 'description testing', is_published: true, admin: user_2) }
 
@@ -70,7 +70,7 @@ describe 'mysteries_controller' do
     end
   end
 
-  context '#leave' do
+  describe '#leave' do
     let(:user_2) { User.create(username: 'john2', email: 'john2@j.j', password: '12345678') }
     let(:mystery) { Mystery.create(name: 'test mystery 1', description: 'description testing', is_published: true, admin: user_2) }
 
@@ -80,6 +80,28 @@ describe 'mysteries_controller' do
       click_link 'Leave!'
       expect(Participant.where(user: user, mystery: mystery).any?).to be false
       expect(page).to have_content "You're no longer solving this mystery."
+    end
+  end
+
+  describe '#publish' do
+    let(:mystery) { Mystery.create(name: 'test mystery', description: 'description testing', is_published: false, admin: user) }
+
+    it 'displays success message after publishing' do
+      visit "/mysteries/#{mystery.id}"
+      click_link 'Publish'
+      expect(mystery.is_published).to be true
+      expect(page).to have_content "#{mystery.name} is now published"
+    end
+  end
+
+  describe '#unpublish' do
+    let(:mystery) { Mystery.create(name: 'test mystery', description: 'description testing', is_published: true, admin: user) }
+
+    it 'displays success message after unpublishing' do
+      visit "/mysteries/#{mystery.id}"
+      click_link 'Unpublish'
+      # expect(mystery.is_published).to be false
+      expect(page).to have_content "#{mystery.name} is now unpublished"
     end
   end
 end

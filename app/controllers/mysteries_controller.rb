@@ -54,7 +54,7 @@ class MysteriesController < ApplicationController
     if @mystery.update(is_published: false)
       redirect_to @mystery, notice: "#{@mystery.name} is now unpublished. It means that only you can see it :)"
     else
-      render @mystery, notice: "There was a problem with publishing #{@mystery.name} :( Please try again later..."
+      render @mystery, notice: "There was a problem with unpublishing #{@mystery.name} :( Please try again later..."
     end
   end
 

@@ -5,9 +5,9 @@
         = @mystery.name
         | &nbsp;
         - if policy(@mystery).publish?
-          = link_to 'Publish', publish_mystery_path, method: :update, class: 'btn btn-success'
+          = link_to 'Publish', publish_mystery_path, method: :post, class: 'btn btn-success'
         - if policy(@mystery).unpublish?
-          = link_to 'Unpublish', unpublish_mystery_path, method: :update, class: 'btn btn-danger'
+          = link_to 'Unpublish', unpublish_mystery_path, method: :post, class: 'btn btn-danger'
         - if @mystery.is_solved
           small.pull-right.label.label-warning Solved
         - if policy(@mystery).unpublish?

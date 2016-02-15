@@ -37,7 +37,6 @@ gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'autoprefixer-rails'
-gem 'figaro'
 gem 'pundit'
 
 gem 'simplecov', require: false, group: :test

@@ -89,7 +89,6 @@ describe 'mysteries_controller' do
     it 'displays success message after publishing' do
       visit "/mysteries/#{mystery.id}"
       click_link 'Publish'
-      expect(mystery.is_published).to be true
       expect(page).to have_content "#{mystery.name} is now published"
     end
   end
@@ -100,7 +99,6 @@ describe 'mysteries_controller' do
     it 'displays success message after unpublishing' do
       visit "/mysteries/#{mystery.id}"
       click_link 'Unpublish'
-      # expect(mystery.is_published).to be false
       expect(page).to have_content "#{mystery.name} is now unpublished"
     end
   end

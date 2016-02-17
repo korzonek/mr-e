@@ -7,7 +7,15 @@ class RequestPolicy < ApplicationPolicy
     @mystery = @request.mystery
   end
 
-  def new?
-    @mystery.users.include?(user)
+  def create?
+    mystery.users.include?(user)
+  end
+
+  def update?
+    user == request.user
+  end
+
+  def destroy?
+    user == request.user || user == mystery.admin
   end
 end

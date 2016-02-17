@@ -13,7 +13,9 @@ class MysteriesController < ApplicationController
   end
 
   def show
-    @requests = @mystery.requests
+    @requests = @mystery.requests.where(user: current_user)
+    @requestt = @mystery.requests.new
+    @request = @mystery.requests.first
   end
 
   def new

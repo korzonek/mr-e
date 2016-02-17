@@ -10,12 +10,13 @@ html
 
     = render 'layouts/navbar'
 
-    .container
-      .row
-        .col-xs-12
-          - if notice
-            .alert.alert-info = notice
-          - if alert
-            .alert.alert-danger = alert
+    - if notice || alert
+      .container
+        .row
+          .col-xs-12
+            - if notice
+              .alert.alert-info = notice
+            - if alert
+              .alert.alert-danger = alert
 
     = yield

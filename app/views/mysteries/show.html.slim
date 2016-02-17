@@ -1,6 +1,6 @@
 .container
   .row
-    .col-xs-12.light-well
+    .col-xs-12
       h1
         = @mystery.name
         | &nbsp;
@@ -15,28 +15,40 @@
         - if policy(@mystery).publish?
           small.pull-right.label.label-danger Unpublished
       hr
-      p = @mystery.description
-      hr
-      p
-        | Admin:&nbsp;
-        = @mystery.admin.username
-      hr
-      p
-      - if policy(@mystery).join?
-        = link_to 'Join!', join_mystery_path, method: :post, class: 'btn btn-block btn-success'
-        hr
-      - if policy(@mystery).leave?
-        = link_to 'Leave!', leave_mystery_path, method: :delete, class: 'btn btn-block btn-danger'
-        hr
-      h5 Solvers:
-      ul
-        - @mystery.users.each do |user|
-          li = user.username
-      hr
-      h5
-        | Requests:
-        - if policy(@mystery).leave?
-          small = link_to 'Add request', new_mystery_request_path(@mystery), class: 'btn btn-xs btn-primary'
-      ul
-        - @requests.each do |request|
-          li = request.content
+      .row
+        .col-xs-9
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title Description
+            .panel-body
+              = @mystery.description
+          .panel.panel-primary
+            .panel-body
+              | Admin:&nbsp;
+              = @mystery.admin.username
+
+          - if policy(@mystery).join?
+            = link_to 'Join!', join_mystery_path, method: :post, class: 'btn btn-block btn-success'
+          - if policy(@mystery).leave?
+            = link_to 'Leave!', leave_mystery_path, method: :delete, class: 'btn btn-block btn-danger'
+
+        .col-xs-3
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title Solvers
+            .panel-body
+              ul
+                - @mystery.users.each do |user|
+                  li = user.username
+                  
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title Your requests
+            .panel-body#my-requests
+              ul
+                = render @requests
+              - if policy(@mystery).leave?
+                = link_to 'Add request', nil, id: 'add-request-btn'
+              = form_for @requestt, url: mystery_requests_path(@mystery), remote: true do |f|
+                = f.text_area :content, placeholder: 'Request content...', class: 'form-control'
+                = f.submit 'Create', class: 'btn btn-xs btn-block btn-success'

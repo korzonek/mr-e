@@ -6,11 +6,8 @@ class RequestPolicy < ApplicationPolicy
     @request = request
   end
 
-  def update?
-    user == request.user
-  end
-
   def destroy?
     user == request.user
   end
+
 end

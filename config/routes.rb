@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :mysteries do
-    resources :requests, except: [:index, :show]
+    resources :requests, only: [:create, :destroy]
   end
 
   post '/mysteries/:id/join', to: 'mysteries#join', as: 'join_mystery'

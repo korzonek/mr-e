@@ -1,1 +1,5 @@
-li = request.content
+li
+  = request.content
+  | &nbsp;
+  = link_to mystery_request_path(request.mystery, request), method: :delete do
+    span.glyphicon.glyphicon-trash.text-right aria-hidden="true"

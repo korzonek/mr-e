@@ -1,17 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe RequestPolicy do
+
   let(:user) { User.new }
-  let(:mystery) { Mystery.new(admin: user) }
+
   subject { described_class }
 
-  permissions :update?, :destroy? do
-    it 'denies access if user is not an author of a request' do
-      expect(subject).not_to permit(user, Request.new)
-    end
+  permissions ".scope" do
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
 
-    it 'allows access if user is an author of a request' do
-      expect(subject).to permit(user, Request.new(user: user))
-    end
+  permissions :show? do
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
+
+  permissions :create? do
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
+
+  permissions :update? do
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
+
+  permissions :destroy? do
+    pending "add some examples to (or delete) #{__FILE__}"
   end
 end

@@ -11,6 +11,14 @@ class RequestsController < ApplicationController
     end
   end
 
+  def destroy
+    @mystery = Mystery.find(params[:mystery_id])
+    @request = Request.find(params[:id])
+    authorize @request
+    @request.destroy
+    redirect_to @mystery
+  end
+
   private
 
   def request_params

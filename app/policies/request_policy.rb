@@ -1,14 +1,9 @@
 class RequestPolicy < ApplicationPolicy
-  attr_reader :user, :request, :mystery
+  attr_reader :user, :request
 
   def initialize(user, request)
     @user = user
     @request = request
-    @mystery = @request.mystery
-  end
-
-  def create?
-    mystery.users.include?(user)
   end
 
   def update?
@@ -16,6 +11,6 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == request.user || user == mystery.admin
+    user == request.user
   end
 end

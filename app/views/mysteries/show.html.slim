@@ -48,7 +48,8 @@
               ul
                 = render @requests
               - if policy(@mystery).leave?
-                = link_to 'Add request', nil, id: 'add-request-btn'
-              = form_for @requestt, url: mystery_requests_path(@mystery), remote: true do |f|
+                = link_to 'Add request', nil, id: 'add-request-btn', onclick: 'addRequestClick(event);'
+              = form_for :request, url: mystery_requests_path(@mystery), remote: true, html: { id: 'new-request' } do |f|
                 = f.text_area :content, placeholder: 'Request content...', class: 'form-control'
-                = f.submit 'Create', class: 'btn btn-xs btn-block btn-success'
+                = link_to 'Cancel', nil, class: 'btn btn-xs btn-danger', onclick: 'cancelRequestClick(event);'
+                = f.submit 'Create', class: 'btn btn-xs btn-success'
